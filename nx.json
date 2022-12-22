@@ -1,0 +1,38 @@
+{
+  "npmScope": "migrate-postcss-preset-env-error",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "migrate-postcss-preset-env-error": {
+      "tags": []
+    },
+    "migrate-postcss-preset-env-error-e2e": {
+      "tags": [],
+      "implicitDependencies": ["migrate-postcss-preset-env-error"]
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "projects": {
+    "migrate-postcss-preset-env-error": {
+      "projectType": "application",
+      "root": "apps/migrate-postcss-preset-env-error",
+      "sourceRoot": "apps/migrate-postcss-preset-env-error/src",
+      "prefix": "migrate-postcss-preset-env-error",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/migrate-postcss-preset-env-error",
+            "index": "apps/migrate-postcss-preset-env-error/src/index.html",
+            "main": "apps/migrate-postcss-preset-env-error/src/main.ts",
+            "polyfills": "apps/migrate-postcss-preset-env-error/src/polyfills.ts",
+            "tsConfig": "apps/migrate-postcss-preset-env-error/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/migrate-postcss-preset-env-error/src/favicon.ico",
+              "apps/migrate-postcss-preset-env-error/src/assets"
+            ],
+            "styles": ["apps/migrate-postcss-preset-env-error/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/migrate-postcss-preset-env-error/src/environments/environment.ts",
+                  "with": "apps/migrate-postcss-preset-env-error/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "migrate-postcss-preset-env-error:build:production"
+            },
+            "development": {
+              "browserTarget": "migrate-postcss-preset-env-error:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "migrate-postcss-preset-env-error:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/migrate-postcss-preset-env-error/src/**/*.ts",
+              "apps/migrate-postcss-preset-env-error/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/migrate-postcss-preset-env-error"],
+          "options": {
+            "jestConfig": "apps/migrate-postcss-preset-env-error/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "migrate-postcss-preset-env-error-e2e": {
+      "root": "apps/migrate-postcss-preset-env-error-e2e",
+      "sourceRoot": "apps/migrate-postcss-preset-env-error-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/migrate-postcss-preset-env-error-e2e/cypress.json",
+            "devServerTarget": "migrate-postcss-preset-env-error:serve:development",
+            "tsConfig": "apps/migrate-postcss-preset-env-error-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "migrate-postcss-preset-env-error:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "apps/migrate-postcss-preset-env-error-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "migrate-postcss-preset-env-error"
+}
